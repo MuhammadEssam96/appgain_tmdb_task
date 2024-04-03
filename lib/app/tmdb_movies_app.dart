@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tmdb_movies/core/navigation/app_router.dart';
 import 'package:tmdb_movies/core/theme/app_themes.dart';
 
-class AppgainTmdbTaskApp extends StatefulWidget {
-  const AppgainTmdbTaskApp({super.key});
+class TmdbMoviesApp extends StatefulWidget {
+  const TmdbMoviesApp({super.key});
 
   @override
-  State<AppgainTmdbTaskApp> createState() => _AppgainTmdbTaskAppState();
+  State<TmdbMoviesApp> createState() => _TmdbMoviesAppState();
 }
 
-class _AppgainTmdbTaskAppState extends State<AppgainTmdbTaskApp> {
+class _TmdbMoviesAppState extends State<TmdbMoviesApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
