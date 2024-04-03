@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><manifest package="dev.muhammadessam.appgain_tmdb_task">
-  <application xmlns:android="http://schemas.android.com/apk/res/android" android:label="appgain_tmdb_task" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
+<?xml version="1.0" encoding="UTF-8"?><manifest package="dev.muhammadessam.tmdb-movies">
+  <application xmlns:android="http://schemas.android.com/apk/res/android" android:label="tmdb_movies" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
     <activity android:hardwareAccelerated="true" android:launchMode="singleTop" android:name=".MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:theme="@style/LaunchTheme" android:exported="true" android:windowSoftInputMode="adjustResize">
       <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme"/>
       <intent-filter>

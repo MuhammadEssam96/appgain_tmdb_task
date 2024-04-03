@@ -1,4 +1,4 @@
-package dev.muhammadessam.appgain_tmdb_task
+package dev.muhammadessam.tmdb-movies
 
 import io.flutter.embedding.android.FlutterActivity
 

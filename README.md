@@ -1,3 +1,3 @@
-# appgain_tmdb_task
+# tmdb_movies
 
 A new Flutter project.
