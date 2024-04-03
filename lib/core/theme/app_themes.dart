@@ -11,7 +11,6 @@ class AppThemes {
       toolbarHeight: 50,
       backgroundColor: AppColors.primaryColor, // Use primary color for background
       titleTextStyle: TextStyle(color: AppColors.white), // Use accent color for text (white suggested for better contrast)
-      shadowColor: Colors.transparent,
       titleSpacing: 1,
       actionsIconTheme: IconThemeData(color: AppColors.white), // Use accent color for icons
       iconTheme: IconThemeData(
