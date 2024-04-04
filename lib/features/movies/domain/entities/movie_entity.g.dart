@@ -9,7 +9,7 @@ part of 'movie_entity.dart';
 _$MovieImpl _$$MovieImplFromJson(Map<String, dynamic> json) => _$MovieImpl(
       title: json['title'] as String,
       posterPath: json['poster_path'] as String,
-      backdropPath: json['backdrop_path'] as String,
+      backdropPath: json['backdrop_path'] as String?,
       releaseDate: DateTime.parse(json['release_date'] as String),
     );
 

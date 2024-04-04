@@ -14,7 +14,7 @@ class Movie with _$Movie {
     required String posterPath,
 
     @JsonKey(name: 'backdrop_path')
-    required String backdropPath,
+    required String? backdropPath,
 
     @JsonKey(name: 'release_date')
     required DateTime releaseDate,

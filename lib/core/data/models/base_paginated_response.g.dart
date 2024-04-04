@@ -16,3 +16,14 @@ BasePaginatedResponse<T> _$BasePaginatedResponseFromJson<T>(
       totalPages: json['total_pages'] as int,
       totalResults: json['total_results'] as int,
     );
+
+Map<String, dynamic> _$BasePaginatedResponseToJson<T>(
+  BasePaginatedResponse<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'page': instance.page,
+      'results': instance.results.map(toJsonT).toList(),
+      'total_pages': instance.totalPages,
+      'total_results': instance.totalResults,
+    };

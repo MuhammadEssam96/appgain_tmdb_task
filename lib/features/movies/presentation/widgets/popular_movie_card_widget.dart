@@ -63,7 +63,7 @@ class _PopularMovieCardState extends State<PopularMovieCard> {
           children: <Widget>[
             AppAnimatedSwitcher(
               child: CachedNetworkImage(
-                key: ValueKey<String>(cardIsTappedDown ? widget.movie.backdropPath : widget.movie.posterPath),
+                key: ValueKey<String>(cardIsTappedDown && widget.movie.backdropPath != null ? widget.movie.backdropPath! : widget.movie.posterPath),
                 imageUrl: 'https://media.themoviedb.org/t/p/w440_and_h660_face${cardIsTappedDown ? widget.movie.backdropPath : widget.movie.posterPath}',
                 height: 270.h,
                 width: 180.w,

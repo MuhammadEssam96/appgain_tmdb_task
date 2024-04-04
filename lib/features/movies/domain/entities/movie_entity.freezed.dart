@@ -24,7 +24,7 @@ mixin _$Movie {
   @JsonKey(name: 'poster_path')
   String get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath => throw _privateConstructorUsedError;
+  String? get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
   DateTime get releaseDate => throw _privateConstructorUsedError;
 
@@ -41,7 +41,7 @@ abstract class $MovieCopyWith<$Res> {
   $Res call(
       {String title,
       @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'release_date') DateTime releaseDate});
 }
 
@@ -60,7 +60,7 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
   $Res call({
     Object? title = null,
     Object? posterPath = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? releaseDate = null,
   }) {
     return _then(_value.copyWith(
@@ -72,10 +72,10 @@ class _$MovieCopyWithImpl<$Res, $Val extends Movie>
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
               as String,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -94,7 +94,7 @@ abstract class _$$MovieImplCopyWith<$Res> implements $MovieCopyWith<$Res> {
   $Res call(
       {String title,
       @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'backdrop_path') String backdropPath,
+      @JsonKey(name: 'backdrop_path') String? backdropPath,
       @JsonKey(name: 'release_date') DateTime releaseDate});
 }
 
@@ -111,7 +111,7 @@ class __$$MovieImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? posterPath = null,
-    Object? backdropPath = null,
+    Object? backdropPath = freezed,
     Object? releaseDate = null,
   }) {
     return _then(_$MovieImpl(
@@ -123,10 +123,10 @@ class __$$MovieImplCopyWithImpl<$Res>
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
               as String,
-      backdropPath: null == backdropPath
+      backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,7 @@ class _$MovieImpl extends _Movie {
   final String posterPath;
   @override
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   @override
   @JsonKey(name: 'release_date')
   final DateTime releaseDate;
@@ -202,7 +202,7 @@ abstract class _Movie extends Movie {
   const factory _Movie(
           {required final String title,
           @JsonKey(name: 'poster_path') required final String posterPath,
-          @JsonKey(name: 'backdrop_path') required final String backdropPath,
+          @JsonKey(name: 'backdrop_path') required final String? backdropPath,
           @JsonKey(name: 'release_date') required final DateTime releaseDate}) =
       _$MovieImpl;
   const _Movie._() : super._();
@@ -216,7 +216,7 @@ abstract class _Movie extends Movie {
   String get posterPath;
   @override
   @JsonKey(name: 'backdrop_path')
-  String get backdropPath;
+  String? get backdropPath;
   @override
   @JsonKey(name: 'release_date')
   DateTime get releaseDate;
