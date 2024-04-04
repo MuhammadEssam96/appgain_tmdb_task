@@ -8,8 +8,8 @@ class Actor with _$Actor {
   const factory Actor({ 
     required String name,
 
-    @JsonKey(name: 'poster_path')
-    required String posterPath,
+    @JsonKey(name: 'profile_path')
+    required String? profilePath,
 
     required String character,
     

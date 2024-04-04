@@ -21,8 +21,8 @@ Actor _$ActorFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Actor {
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'poster_path')
-  String get posterPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_path')
+  String? get profilePath => throw _privateConstructorUsedError;
   String get character => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $ActorCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'profile_path') String? profilePath,
       String character});
 }
 
@@ -55,7 +55,7 @@ class _$ActorCopyWithImpl<$Res, $Val extends Actor>
   @override
   $Res call({
     Object? name = null,
-    Object? posterPath = null,
+    Object? profilePath = freezed,
     Object? character = null,
   }) {
     return _then(_value.copyWith(
@@ -63,10 +63,10 @@ class _$ActorCopyWithImpl<$Res, $Val extends Actor>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
-          ? _value.posterPath
-          : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      profilePath: freezed == profilePath
+          ? _value.profilePath
+          : profilePath // ignore: cast_nullable_to_non_nullable
+              as String?,
       character: null == character
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -84,7 +84,7 @@ abstract class _$$ActorImplCopyWith<$Res> implements $ActorCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      @JsonKey(name: 'poster_path') String posterPath,
+      @JsonKey(name: 'profile_path') String? profilePath,
       String character});
 }
 
@@ -100,7 +100,7 @@ class __$$ActorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? posterPath = null,
+    Object? profilePath = freezed,
     Object? character = null,
   }) {
     return _then(_$ActorImpl(
@@ -108,10 +108,10 @@ class __$$ActorImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
-          ? _value.posterPath
-          : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+      profilePath: freezed == profilePath
+          ? _value.profilePath
+          : profilePath // ignore: cast_nullable_to_non_nullable
+              as String?,
       character: null == character
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ class __$$ActorImplCopyWithImpl<$Res>
 class _$ActorImpl extends _Actor {
   const _$ActorImpl(
       {required this.name,
-      @JsonKey(name: 'poster_path') required this.posterPath,
+      @JsonKey(name: 'profile_path') required this.profilePath,
       required this.character})
       : super._();
 
@@ -135,14 +135,14 @@ class _$ActorImpl extends _Actor {
   @override
   final String name;
   @override
-  @JsonKey(name: 'poster_path')
-  final String posterPath;
+  @JsonKey(name: 'profile_path')
+  final String? profilePath;
   @override
   final String character;
 
   @override
   String toString() {
-    return 'Actor(name: $name, posterPath: $posterPath, character: $character)';
+    return 'Actor(name: $name, profilePath: $profilePath, character: $character)';
   }
 
   @override
@@ -151,15 +151,15 @@ class _$ActorImpl extends _Actor {
         (other.runtimeType == runtimeType &&
             other is _$ActorImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.posterPath, posterPath) ||
-                other.posterPath == posterPath) &&
+            (identical(other.profilePath, profilePath) ||
+                other.profilePath == profilePath) &&
             (identical(other.character, character) ||
                 other.character == character));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, posterPath, character);
+  int get hashCode => Object.hash(runtimeType, name, profilePath, character);
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +178,7 @@ class _$ActorImpl extends _Actor {
 abstract class _Actor extends Actor {
   const factory _Actor(
       {required final String name,
-      @JsonKey(name: 'poster_path') required final String posterPath,
+      @JsonKey(name: 'profile_path') required final String? profilePath,
       required final String character}) = _$ActorImpl;
   const _Actor._() : super._();
 
@@ -187,8 +187,8 @@ abstract class _Actor extends Actor {
   @override
   String get name;
   @override
-  @JsonKey(name: 'poster_path')
-  String get posterPath;
+  @JsonKey(name: 'profile_path')
+  String? get profilePath;
   @override
   String get character;
   @override
