@@ -17,36 +17,39 @@ class MovieDetailsAdapter extends TypeAdapter<MovieDetails> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MovieDetails(
-      title: fields[0] as String,
-      tagline: fields[1] as String,
-      overview: fields[2] as String,
-      releaseDate: fields[3] as DateTime,
-      posterPath: fields[4] as String,
-      spokenLanguages: (fields[5] as List).cast<Language>(),
-      genres: (fields[6] as List).cast<Genre>(),
-      credits: fields[7] as Credits,
+      id: fields[0] as int,
+      title: fields[1] as String,
+      tagline: fields[2] as String,
+      overview: fields[3] as String,
+      releaseDate: fields[4] as DateTime,
+      posterPath: fields[5] as String,
+      spokenLanguages: (fields[6] as List).cast<Language>(),
+      genres: (fields[7] as List).cast<Genre>(),
+      credits: fields[8] as Credits,
     );
   }
 
   @override
   void write(BinaryWriter writer, MovieDetails obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.tagline)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.overview)
+      ..write(obj.tagline)
       ..writeByte(3)
-      ..write(obj.releaseDate)
+      ..write(obj.overview)
       ..writeByte(4)
-      ..write(obj.posterPath)
+      ..write(obj.releaseDate)
       ..writeByte(5)
-      ..write(obj.spokenLanguages)
+      ..write(obj.posterPath)
       ..writeByte(6)
-      ..write(obj.genres)
+      ..write(obj.spokenLanguages)
       ..writeByte(7)
+      ..write(obj.genres)
+      ..writeByte(8)
       ..write(obj.credits);
   }
 
@@ -67,6 +70,7 @@ class MovieDetailsAdapter extends TypeAdapter<MovieDetails> {
 
 _$MovieDetailsImpl _$$MovieDetailsImplFromJson(Map<String, dynamic> json) =>
     _$MovieDetailsImpl(
+      id: json['id'] as int,
       title: json['title'] as String,
       tagline: json['tagline'] as String,
       overview: json['overview'] as String,
@@ -83,6 +87,7 @@ _$MovieDetailsImpl _$$MovieDetailsImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MovieDetailsImplToJson(_$MovieDetailsImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'tagline': instance.tagline,
       'overview': instance.overview,

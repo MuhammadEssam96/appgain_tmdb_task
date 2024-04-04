@@ -5,7 +5,7 @@ part 'genre_entity.g.dart';
 part 'genre_entity.freezed.dart';
 
 @Freezed()
-@HiveField(3)
+@HiveType(typeId: 3)
 class Genre with _$Genre {
   const factory Genre({
     @HiveField(0)

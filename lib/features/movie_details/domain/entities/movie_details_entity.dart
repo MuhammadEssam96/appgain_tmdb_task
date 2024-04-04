@@ -12,30 +12,33 @@ part 'movie_details_entity.freezed.dart';
 class MovieDetails with _$MovieDetails {
   const factory MovieDetails({
     @HiveField(0)
-    required String title,
+    required int id,
 
     @HiveField(1)
-    required String tagline,
+    required String title,
 
     @HiveField(2)
+    required String tagline,
+
+    @HiveField(3)
     required String overview,
 
     @JsonKey(name: 'release_date')
-    @HiveField(3)
+    @HiveField(4)
     required DateTime releaseDate,
 
     @JsonKey(name: 'poster_path')
-    @HiveField(4)
+    @HiveField(5)
     required String posterPath,
 
     @JsonKey(name: 'spoken_languages')
-    @HiveField(5)
+    @HiveField(6)
     required List<Language> spokenLanguages,
 
-    @HiveField(6)
+    @HiveField(7)
     required List<Genre> genres,
 
-    @HiveField(7)
+    @HiveField(8)
     required Credits credits,
   }) = _MovieDetails;
 
