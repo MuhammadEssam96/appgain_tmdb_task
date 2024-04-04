@@ -28,10 +28,14 @@ final List<GoRoute> routes = <GoRoute>[
     path: RouteNames.movieDetails,
     pageBuilder: (BuildContext context, GoRouterState state) {
       final int id = int.parse(state.pathParameters['id'] ?? '1');
+      final String? posterPath = state.extra as String?;
 
       return MaterialPage<void>(
         key: state.pageKey,
-        child: MovieDetailsScreen(id: id),
+        child: MovieDetailsScreen(
+          posterPath: posterPath,
+          id: id,
+        ),
       );
     },
   ),

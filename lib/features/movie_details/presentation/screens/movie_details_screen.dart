@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -18,9 +19,11 @@ import 'package:tmdb_movies/features/movie_details/presentation/widgets/genre_ch
 
 class MovieDetailsScreen extends StatefulWidget {
   final int id;
+  final String? posterPath;
 
   const MovieDetailsScreen({
     required this.id,
+    required this.posterPath,
     super.key,
   });
 
@@ -51,24 +54,25 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         child: Scaffold(
           body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
             builder: (BuildContext context, MovieDetailsState state) {
-              return AppAnimatedSwitcher(
-                child: state is MovieDetailsSuccess ? CustomScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  slivers: <Widget>[
-                    SliverAppBar(
-                      pinned: true,
-                      elevation: 8.h,
-                      systemOverlayStyle: AppSystemUiOverlayStyles.lightStatusBarIconsStyle.copyWith(
-                        statusBarColor: Colors.transparent,
-                        systemNavigationBarColor: AppColors.white,
-                      ),
-                      expandedHeight: 310.h - kToolbarHeight,
-                      flexibleSpace: FlexibleSpaceBar(
-                        background: Stack(
-                          children: <Widget>[
-                            CachedNetworkImage(
-                              key: ValueKey<String>(state.movieDetails.posterPath),
-                              imageUrl: 'https://media.themoviedb.org/t/p/w440_and_h660_face${state.movieDetails.posterPath}',
+              return CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: <Widget>[
+                  SliverAppBar(
+                    pinned: true,
+                    elevation: 8.h,
+                    systemOverlayStyle: AppSystemUiOverlayStyles.lightStatusBarIconsStyle.copyWith(
+                      statusBarColor: Colors.transparent,
+                      systemNavigationBarColor: AppColors.white,
+                    ),
+                    expandedHeight: 310.h - kToolbarHeight,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Stack(
+                        children: <Widget>[
+                          if (widget.posterPath != null || state is MovieDetailsSuccess && state.movieDetails.posterPath.isNotEmpty) Hero(
+                            tag: 'poster_path:${widget.posterPath ?? (state as MovieDetailsSuccess).movieDetails.posterPath}',
+                            child: CachedNetworkImage(
+                              key: ValueKey<String>(widget.posterPath ?? (state as MovieDetailsSuccess).movieDetails.posterPath),
+                              imageUrl: 'https://media.themoviedb.org/t/p/w440_and_h660_face${widget.posterPath ?? (state as MovieDetailsSuccess).movieDetails.posterPath}',
                               height: 315.h,
                               width: 393.w,
                               fit: BoxFit.cover,
@@ -87,179 +91,190 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 );
                               },
                             ),
-                            Container(
-                              height: 315.h,
-                              width: 393.w,
-                              color: AppColors.primaryColor.withOpacity(0.2),
+                          ) else SizedBox(
+                            height: 315.h,
+                            width: 393.w,
+                            child: const AppShimmerWidget(),
+                          ),
+                          Container(
+                            height: 315.h,
+                            width: 393.w,
+                            color: AppColors.primaryColor.withOpacity(0.2),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: AppAnimatedSwitcher(
+                      child: state is MovieDetailsSuccess ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(height: 24.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h),
+                            child: Text(
+                              state.movieDetails.title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.2,
+                                fontSize: 20.sp,
+                                height: 25.h / 20.sp,
+                              ),
                             ),
-                          ],
+                          ),
+                          SizedBox(height: 8.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h),
+                            child: Text(
+                              state.movieDetails.tagline,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                letterSpacing: 0.2,
+                                fontSize: 12.sp,
+                                height: 15.h / 12.sp,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 16.h),
+                            child: Wrap(
+                              spacing: 8.w,
+                              runSpacing: 8.h,
+                              children: state.movieDetails.genres.map((Genre genre) {
+                                return GenreChip(name: genre.name);
+                              }).toList(),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Release date',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: 0.2,
+                                          fontSize: 12.sp,
+                                          height: 15.h / 12.sp,
+                                          color: const Color(0xFF9C9C9C),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4.h),
+                                      Text(
+                                        DateFormat('MMMM dd yyyy').format(state.movieDetails.releaseDate),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.2,
+                                          fontSize: 12.sp,
+                                          height: 15.h / 12.sp,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        'Language',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: 0.2,
+                                          fontSize: 12.sp,
+                                          height: 15.h / 12.sp,
+                                          color: const Color(0xFF9C9C9C),
+                                        ),
+                                      ),
+                                      SizedBox(height: 4.h),
+                                      Text(
+                                        state.movieDetails.spokenLanguages.first.englishName,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          letterSpacing: 0.2,
+                                          fontSize: 12.sp,
+                                          height: 15.h / 12.sp,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 24.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Description',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 0.2,
+                                    fontSize: 16.sp,
+                                    height: 20.h / 16.sp,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                SizedBox(height: 8.h),
+                                Text(
+                                  state.movieDetails.overview,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: 0.2,
+                                    fontSize: 12.sp,
+                                    height: 22.h / 12.sp,
+                                    color: const Color(0xFF9C9C9C),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.h),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Cast',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 0.2,
+                                    fontSize: 16.sp,
+                                    height: 20.h / 16.sp,
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                                SizedBox(height: 16.h),
+                                Wrap(
+                                  spacing: 16.w,
+                                  runSpacing: 16.h,
+                                  alignment: WrapAlignment.spaceAround,
+                                  runAlignment: WrapAlignment.spaceEvenly,
+                                  children: state.movieDetails.credits.cast.map((Actor actor) {
+                                    return ActorInfo(actor: actor);
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 150.h),
+                        ],
+                      ) : Padding(
+                        padding: EdgeInsets.only(top: 157.5.h),
+                        child: const Center(
+                          child:  CircularProgressIndicator(),
                         ),
                       ),
                     ),
-                    SliverList.list(
-                      children: <Widget>[
-                        SizedBox(height: 24.h),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h),
-                          child: Text(
-                            state.movieDetails.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.2,
-                              fontSize: 20.sp,
-                              height: 25.h / 20.sp,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.h),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h),
-                          child: Text(
-                            state.movieDetails.tagline,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 0.2,
-                              fontSize: 12.sp,
-                              height: 15.h / 12.sp,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 16.h),
-                          child: Wrap(
-                            spacing: 8.w,
-                            runSpacing: 8.h,
-                            children: state.movieDetails.genres.map((Genre genre) {
-                              return GenreChip(name: genre.name);
-                            }).toList(),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      'Release date',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 0.2,
-                                        fontSize: 12.sp,
-                                        height: 15.h / 12.sp,
-                                        color: const Color(0xFF9C9C9C),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4.h),
-                                    Text(
-                                      DateFormat('MMMM dd yyyy').format(state.movieDetails.releaseDate),
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.2,
-                                        fontSize: 12.sp,
-                                        height: 15.h / 12.sp,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      'Language',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        letterSpacing: 0.2,
-                                        fontSize: 12.sp,
-                                        height: 15.h / 12.sp,
-                                        color: const Color(0xFF9C9C9C),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4.h),
-                                    Text(
-                                      state.movieDetails.spokenLanguages.first.englishName,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 0.2,
-                                        fontSize: 12.sp,
-                                        height: 15.h / 12.sp,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 24.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Description',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  letterSpacing: 0.2,
-                                  fontSize: 16.sp,
-                                  height: 20.h / 16.sp,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              SizedBox(height: 8.h),
-                              Text(
-                                state.movieDetails.overview,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 0.2,
-                                  fontSize: 12.sp,
-                                  height: 22.h / 12.sp,
-                                  color: const Color(0xFF9C9C9C),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Cast',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  letterSpacing: 0.2,
-                                  fontSize: 16.sp,
-                                  height: 20.h / 16.sp,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              SizedBox(height: 16.h),
-                              Wrap(
-                                spacing: 16.w,
-                                runSpacing: 16.h,
-                                alignment: WrapAlignment.spaceAround,
-                                runAlignment: WrapAlignment.spaceEvenly,
-                                children: state.movieDetails.credits.cast.map((Actor actor) {
-                                  return ActorInfo(actor: actor);
-                                }).toList(),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 150.h),
-                      ],
-                    ),
-                  ],
-                )
-                : const Center(
-                  child:  CircularProgressIndicator(),
-                ),
+                  ),
+                ],
               );
             },
           ),

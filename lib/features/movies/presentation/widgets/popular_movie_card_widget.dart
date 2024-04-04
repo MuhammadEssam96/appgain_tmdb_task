@@ -44,6 +44,7 @@ class _PopularMovieCardState extends State<PopularMovieCard> {
       onTap: () {
         context.push(
           '/movies/${widget.movie.id}',
+          extra: widget.movie.posterPath,
         );
       },
       behavior: HitTestBehavior.opaque,
@@ -69,26 +70,29 @@ class _PopularMovieCardState extends State<PopularMovieCard> {
         child: Column(
           children: <Widget>[
             AppAnimatedSwitcher(
-              child: CachedNetworkImage(
-                key: ValueKey<String>(cardIsTappedDown && widget.movie.backdropPath != null ? widget.movie.backdropPath! : widget.movie.posterPath),
-                imageUrl: 'https://media.themoviedb.org/t/p/w440_and_h660_face${cardIsTappedDown ? widget.movie.backdropPath : widget.movie.posterPath}',
-                height: 270.h,
-                width: 180.w,
-                fit: BoxFit.fill,
-                placeholder: (BuildContext context, _) {
-                  return SizedBox(
-                    height: 270.h,
-                    width: 180.w,
-                    child: const AppShimmerWidget(),
-                  );
-                },
-                errorWidget: (BuildContext context, _, dynamic ___) {
-                  return SizedBox(
-                    height: 270.h,
-                    width: 180.w,
-                    child: const AppShimmerWidget(),
-                  );
-                },
+              child: Hero(
+                tag: 'poster_path:${widget.movie.posterPath}',
+                child: CachedNetworkImage(
+                  key: ValueKey<String>(cardIsTappedDown && widget.movie.backdropPath != null ? widget.movie.backdropPath! : widget.movie.posterPath),
+                  imageUrl: 'https://media.themoviedb.org/t/p/w440_and_h660_face${cardIsTappedDown ? widget.movie.backdropPath : widget.movie.posterPath}',
+                  height: 270.h,
+                  width: 180.w,
+                  fit: BoxFit.fill,
+                  placeholder: (BuildContext context, _) {
+                    return SizedBox(
+                      height: 270.h,
+                      width: 180.w,
+                      child: const AppShimmerWidget(),
+                    );
+                  },
+                  errorWidget: (BuildContext context, _, dynamic ___) {
+                    return SizedBox(
+                      height: 270.h,
+                      width: 180.w,
+                      child: const AppShimmerWidget(),
+                    );
+                  },
+                ),
               ),
             ),
             Expanded(
