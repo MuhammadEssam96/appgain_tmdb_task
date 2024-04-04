@@ -19,13 +19,16 @@ class AppShimmerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer(
-      colorOpacity: 0.2,
-      color: color,
-      duration: const Duration(milliseconds: 1200),
-      child: width == null && height == null ? const SizedBox.expand() : SizedBox(
-        width: width?.w,
-        height: height?.h,
+    return ClipRRect(
+      borderRadius: borderRadius,
+      child: Shimmer(
+        colorOpacity: 0.2,
+        color: color,
+        duration: const Duration(milliseconds: 1200),
+        child: width == null && height == null ? const SizedBox.expand() : SizedBox(
+          width: width?.w,
+          height: height?.h,
+        ),
       ),
     );
   }
