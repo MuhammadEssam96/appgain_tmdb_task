@@ -35,4 +35,21 @@ final List<GoRoute> routes = <GoRoute>[
       );
     },
   ),
+  GoRoute(
+    path: '/tmdb-movies',
+    redirect: (BuildContext context, GoRouterState state) {
+      return '/';
+    },
+  ),
+  GoRoute(
+    path: '/tmdb-movies/:id',
+    redirect: (BuildContext context, GoRouterState state) {
+      if (state.pathParameters['id'] != null) {
+        final String movieId = state.pathParameters['id'].toString();
+        return '/movies/$movieId';
+      } else {
+        return '/';
+      }
+    },
+  ),
 ];
