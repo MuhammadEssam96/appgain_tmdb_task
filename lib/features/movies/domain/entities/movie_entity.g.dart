@@ -7,6 +7,7 @@ part of 'movie_entity.dart';
 // **************************************************************************
 
 _$MovieImpl _$$MovieImplFromJson(Map<String, dynamic> json) => _$MovieImpl(
+      id: json['id'] as int,
       title: json['title'] as String,
       posterPath: json['poster_path'] as String,
       backdropPath: json['backdrop_path'] as String?,
@@ -15,6 +16,7 @@ _$MovieImpl _$$MovieImplFromJson(Map<String, dynamic> json) => _$MovieImpl(
 
 Map<String, dynamic> _$$MovieImplToJson(_$MovieImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'poster_path': instance.posterPath,
       'backdrop_path': instance.backdropPath,
