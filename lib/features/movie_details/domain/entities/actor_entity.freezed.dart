@@ -20,9 +20,12 @@ Actor _$ActorFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Actor {
+  @HiveField(0)
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_path')
+  @HiveField(1)
   String? get profilePath => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get character => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,9 +39,9 @@ abstract class $ActorCopyWith<$Res> {
       _$ActorCopyWithImpl<$Res, Actor>;
   @useResult
   $Res call(
-      {String name,
-      @JsonKey(name: 'profile_path') String? profilePath,
-      String character});
+      {@HiveField(0) String name,
+      @JsonKey(name: 'profile_path') @HiveField(1) String? profilePath,
+      @HiveField(2) String character});
 }
 
 /// @nodoc
@@ -83,9 +86,9 @@ abstract class _$$ActorImplCopyWith<$Res> implements $ActorCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
-      @JsonKey(name: 'profile_path') String? profilePath,
-      String character});
+      {@HiveField(0) String name,
+      @JsonKey(name: 'profile_path') @HiveField(1) String? profilePath,
+      @HiveField(2) String character});
 }
 
 /// @nodoc
@@ -124,20 +127,23 @@ class __$$ActorImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ActorImpl extends _Actor {
   const _$ActorImpl(
-      {required this.name,
-      @JsonKey(name: 'profile_path') required this.profilePath,
-      required this.character})
+      {@HiveField(0) required this.name,
+      @JsonKey(name: 'profile_path') @HiveField(1) required this.profilePath,
+      @HiveField(2) required this.character})
       : super._();
 
   factory _$ActorImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActorImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String name;
   @override
   @JsonKey(name: 'profile_path')
+  @HiveField(1)
   final String? profilePath;
   @override
+  @HiveField(2)
   final String character;
 
   @override
@@ -177,19 +183,24 @@ class _$ActorImpl extends _Actor {
 
 abstract class _Actor extends Actor {
   const factory _Actor(
-      {required final String name,
-      @JsonKey(name: 'profile_path') required final String? profilePath,
-      required final String character}) = _$ActorImpl;
+      {@HiveField(0) required final String name,
+      @JsonKey(name: 'profile_path')
+      @HiveField(1)
+      required final String? profilePath,
+      @HiveField(2) required final String character}) = _$ActorImpl;
   const _Actor._() : super._();
 
   factory _Actor.fromJson(Map<String, dynamic> json) = _$ActorImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get name;
   @override
   @JsonKey(name: 'profile_path')
+  @HiveField(1)
   String? get profilePath;
   @override
+  @HiveField(2)
   String get character;
   @override
   @JsonKey(ignore: true)

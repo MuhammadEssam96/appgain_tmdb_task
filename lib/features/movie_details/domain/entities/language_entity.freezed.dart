@@ -21,6 +21,7 @@ Language _$LanguageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Language {
   @JsonKey(name: 'english_name')
+  @HiveField(0)
   String get englishName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $LanguageCopyWith<$Res> {
   factory $LanguageCopyWith(Language value, $Res Function(Language) then) =
       _$LanguageCopyWithImpl<$Res, Language>;
   @useResult
-  $Res call({@JsonKey(name: 'english_name') String englishName});
+  $Res call({@JsonKey(name: 'english_name') @HiveField(0) String englishName});
 }
 
 /// @nodoc
@@ -69,7 +70,7 @@ abstract class _$$LanguageImplCopyWith<$Res>
       __$$LanguageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'english_name') String englishName});
+  $Res call({@JsonKey(name: 'english_name') @HiveField(0) String englishName});
 }
 
 /// @nodoc
@@ -98,7 +99,7 @@ class __$$LanguageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LanguageImpl extends _Language {
   const _$LanguageImpl(
-      {@JsonKey(name: 'english_name') required this.englishName})
+      {@JsonKey(name: 'english_name') @HiveField(0) required this.englishName})
       : super._();
 
   factory _$LanguageImpl.fromJson(Map<String, dynamic> json) =>
@@ -106,6 +107,7 @@ class _$LanguageImpl extends _Language {
 
   @override
   @JsonKey(name: 'english_name')
+  @HiveField(0)
   final String englishName;
 
   @override
@@ -142,8 +144,9 @@ class _$LanguageImpl extends _Language {
 
 abstract class _Language extends Language {
   const factory _Language(
-          {@JsonKey(name: 'english_name') required final String englishName}) =
-      _$LanguageImpl;
+      {@JsonKey(name: 'english_name')
+      @HiveField(0)
+      required final String englishName}) = _$LanguageImpl;
   const _Language._() : super._();
 
   factory _Language.fromJson(Map<String, dynamic> json) =
@@ -151,6 +154,7 @@ abstract class _Language extends Language {
 
   @override
   @JsonKey(name: 'english_name')
+  @HiveField(0)
   String get englishName;
   @override
   @JsonKey(ignore: true)

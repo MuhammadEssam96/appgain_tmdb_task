@@ -20,6 +20,7 @@ Credits _$CreditsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Credits {
+  @HiveField(0)
   List<Actor> get cast => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -32,7 +33,7 @@ abstract class $CreditsCopyWith<$Res> {
   factory $CreditsCopyWith(Credits value, $Res Function(Credits) then) =
       _$CreditsCopyWithImpl<$Res, Credits>;
   @useResult
-  $Res call({List<Actor> cast});
+  $Res call({@HiveField(0) List<Actor> cast});
 }
 
 /// @nodoc
@@ -66,7 +67,7 @@ abstract class _$$CreditsImplCopyWith<$Res> implements $CreditsCopyWith<$Res> {
       __$$CreditsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Actor> cast});
+  $Res call({@HiveField(0) List<Actor> cast});
 }
 
 /// @nodoc
@@ -94,7 +95,7 @@ class __$$CreditsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CreditsImpl extends _Credits {
-  const _$CreditsImpl({required final List<Actor> cast})
+  const _$CreditsImpl({@HiveField(0) required final List<Actor> cast})
       : _cast = cast,
         super._();
 
@@ -103,6 +104,7 @@ class _$CreditsImpl extends _Credits {
 
   final List<Actor> _cast;
   @override
+  @HiveField(0)
   List<Actor> get cast {
     if (_cast is EqualUnmodifiableListView) return _cast;
     // ignore: implicit_dynamic_type
@@ -142,12 +144,14 @@ class _$CreditsImpl extends _Credits {
 }
 
 abstract class _Credits extends Credits {
-  const factory _Credits({required final List<Actor> cast}) = _$CreditsImpl;
+  const factory _Credits({@HiveField(0) required final List<Actor> cast}) =
+      _$CreditsImpl;
   const _Credits._() : super._();
 
   factory _Credits.fromJson(Map<String, dynamic> json) = _$CreditsImpl.fromJson;
 
   @override
+  @HiveField(0)
   List<Actor> get cast;
   @override
   @JsonKey(ignore: true)

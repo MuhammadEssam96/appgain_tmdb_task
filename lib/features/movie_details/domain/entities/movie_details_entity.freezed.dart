@@ -20,16 +20,24 @@ MovieDetails _$MovieDetailsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieDetails {
+  @HiveField(0)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get tagline => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get overview => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
+  @HiveField(3)
   DateTime get releaseDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
+  @HiveField(4)
   String get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'spoken_languages')
+  @HiveField(5)
   List<Language> get spokenLanguages => throw _privateConstructorUsedError;
+  @HiveField(6)
   List<Genre> get genres => throw _privateConstructorUsedError;
+  @HiveField(7)
   Credits get credits => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,14 +53,16 @@ abstract class $MovieDetailsCopyWith<$Res> {
       _$MovieDetailsCopyWithImpl<$Res, MovieDetails>;
   @useResult
   $Res call(
-      {String title,
-      String tagline,
-      String overview,
-      @JsonKey(name: 'release_date') DateTime releaseDate,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-      List<Genre> genres,
-      Credits credits});
+      {@HiveField(0) String title,
+      @HiveField(1) String tagline,
+      @HiveField(2) String overview,
+      @JsonKey(name: 'release_date') @HiveField(3) DateTime releaseDate,
+      @JsonKey(name: 'poster_path') @HiveField(4) String posterPath,
+      @JsonKey(name: 'spoken_languages')
+      @HiveField(5)
+      List<Language> spokenLanguages,
+      @HiveField(6) List<Genre> genres,
+      @HiveField(7) Credits credits});
 
   $CreditsCopyWith<$Res> get credits;
 }
@@ -133,14 +143,16 @@ abstract class _$$MovieDetailsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
-      String tagline,
-      String overview,
-      @JsonKey(name: 'release_date') DateTime releaseDate,
-      @JsonKey(name: 'poster_path') String posterPath,
-      @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-      List<Genre> genres,
-      Credits credits});
+      {@HiveField(0) String title,
+      @HiveField(1) String tagline,
+      @HiveField(2) String overview,
+      @JsonKey(name: 'release_date') @HiveField(3) DateTime releaseDate,
+      @JsonKey(name: 'poster_path') @HiveField(4) String posterPath,
+      @JsonKey(name: 'spoken_languages')
+      @HiveField(5)
+      List<Language> spokenLanguages,
+      @HiveField(6) List<Genre> genres,
+      @HiveField(7) Credits credits});
 
   @override
   $CreditsCopyWith<$Res> get credits;
@@ -207,15 +219,16 @@ class __$$MovieDetailsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MovieDetailsImpl extends _MovieDetails {
   const _$MovieDetailsImpl(
-      {required this.title,
-      required this.tagline,
-      required this.overview,
-      @JsonKey(name: 'release_date') required this.releaseDate,
-      @JsonKey(name: 'poster_path') required this.posterPath,
+      {@HiveField(0) required this.title,
+      @HiveField(1) required this.tagline,
+      @HiveField(2) required this.overview,
+      @JsonKey(name: 'release_date') @HiveField(3) required this.releaseDate,
+      @JsonKey(name: 'poster_path') @HiveField(4) required this.posterPath,
       @JsonKey(name: 'spoken_languages')
+      @HiveField(5)
       required final List<Language> spokenLanguages,
-      required final List<Genre> genres,
-      required this.credits})
+      @HiveField(6) required final List<Genre> genres,
+      @HiveField(7) required this.credits})
       : _spokenLanguages = spokenLanguages,
         _genres = genres,
         super._();
@@ -224,20 +237,26 @@ class _$MovieDetailsImpl extends _MovieDetails {
       _$$MovieDetailsImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String title;
   @override
+  @HiveField(1)
   final String tagline;
   @override
+  @HiveField(2)
   final String overview;
   @override
   @JsonKey(name: 'release_date')
+  @HiveField(3)
   final DateTime releaseDate;
   @override
   @JsonKey(name: 'poster_path')
+  @HiveField(4)
   final String posterPath;
   final List<Language> _spokenLanguages;
   @override
   @JsonKey(name: 'spoken_languages')
+  @HiveField(5)
   List<Language> get spokenLanguages {
     if (_spokenLanguages is EqualUnmodifiableListView) return _spokenLanguages;
     // ignore: implicit_dynamic_type
@@ -246,6 +265,7 @@ class _$MovieDetailsImpl extends _MovieDetails {
 
   final List<Genre> _genres;
   @override
+  @HiveField(6)
   List<Genre> get genres {
     if (_genres is EqualUnmodifiableListView) return _genres;
     // ignore: implicit_dynamic_type
@@ -253,6 +273,7 @@ class _$MovieDetailsImpl extends _MovieDetails {
   }
 
   @override
+  @HiveField(7)
   final Credits credits;
 
   @override
@@ -308,38 +329,51 @@ class _$MovieDetailsImpl extends _MovieDetails {
 
 abstract class _MovieDetails extends MovieDetails {
   const factory _MovieDetails(
-      {required final String title,
-      required final String tagline,
-      required final String overview,
-      @JsonKey(name: 'release_date') required final DateTime releaseDate,
-      @JsonKey(name: 'poster_path') required final String posterPath,
+      {@HiveField(0) required final String title,
+      @HiveField(1) required final String tagline,
+      @HiveField(2) required final String overview,
+      @JsonKey(name: 'release_date')
+      @HiveField(3)
+      required final DateTime releaseDate,
+      @JsonKey(name: 'poster_path')
+      @HiveField(4)
+      required final String posterPath,
       @JsonKey(name: 'spoken_languages')
+      @HiveField(5)
       required final List<Language> spokenLanguages,
-      required final List<Genre> genres,
-      required final Credits credits}) = _$MovieDetailsImpl;
+      @HiveField(6) required final List<Genre> genres,
+      @HiveField(7) required final Credits credits}) = _$MovieDetailsImpl;
   const _MovieDetails._() : super._();
 
   factory _MovieDetails.fromJson(Map<String, dynamic> json) =
       _$MovieDetailsImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get title;
   @override
+  @HiveField(1)
   String get tagline;
   @override
+  @HiveField(2)
   String get overview;
   @override
   @JsonKey(name: 'release_date')
+  @HiveField(3)
   DateTime get releaseDate;
   @override
   @JsonKey(name: 'poster_path')
+  @HiveField(4)
   String get posterPath;
   @override
   @JsonKey(name: 'spoken_languages')
+  @HiveField(5)
   List<Language> get spokenLanguages;
   @override
+  @HiveField(6)
   List<Genre> get genres;
   @override
+  @HiveField(7)
   Credits get credits;
   @override
   @JsonKey(ignore: true)
