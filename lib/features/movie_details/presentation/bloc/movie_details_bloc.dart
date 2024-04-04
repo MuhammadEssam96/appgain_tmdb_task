@@ -1,0 +1,36 @@
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:tmdb_movies/core/data/models/base_response_state.dart';
+import 'package:tmdb_movies/features/movie_details/domain/entities/movie_details_entity.dart';
+import 'package:tmdb_movies/features/movie_details/domain/repositories/movie_details_repository.dart';
+
+part 'movie_details_event.dart';
+part 'movie_details_state.dart';
+
+class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
+  final MovieDetailsRepository _movieDetailsRepository;
+
+  MovieDetailsBloc(this._movieDetailsRepository) : super(const MovieDetailsInitial()) {
+    on<MovieDetailsFetchingStarted>((MovieDetailsFetchingStarted event, Emitter<MovieDetailsState> emit) async {
+      emit(const MovieDetailsLoading());
+
+      try {
+        final BaseResponseState<MovieDetails> response = await _movieDetailsRepository.getMovieDetails(id: event.id);
+      
+        if (response is ResponseSuccess) {
+          emit(
+            MovieDetailsSuccess(movieDetails: response.data!),
+          );
+        } else if (response is ResponseFailed) {
+          emit(
+            MovieDetailsError(errorMessage: response.errorMessage ?? 'error loading movie details'),
+          );
+        }
+      } catch (e) {
+        emit(
+          MovieDetailsError(errorMessage: e.toString()),
+        );
+      }
+    });
+  }
+}
