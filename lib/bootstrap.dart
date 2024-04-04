@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:tmdb_movies/di.dart';
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
@@ -16,6 +18,10 @@ Future<void> bootstrap(
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+
+      await dotenv.load();
+      
+      await initializeServiceLocators();
 
       runApp(
         await builder(),
