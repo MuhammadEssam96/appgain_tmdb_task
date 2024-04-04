@@ -16,7 +16,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       emit(const MoviesListLoading());
 
       try {
-        final BaseResponseState<BasePaginatedResponse<Movie>> response = await _moviesRepository.getPopularMovies(page: event.page);
+        final BaseResponseState<BasePaginatedResponse<Movie>> response = await _moviesRepository.getMovieDetails(page: event.page);
       
         if (response is ResponseSuccess) {
           emit(

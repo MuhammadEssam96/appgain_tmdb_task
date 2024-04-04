@@ -5,7 +5,7 @@ import 'package:tmdb_movies/features/movies/domain/entities/movie_entity.dart';
 abstract class MoviesRepository {
   const MoviesRepository();
 
-  Future<BaseResponseState<BasePaginatedResponse<Movie>>> getPopularMovies({
+  Future<BaseResponseState<BasePaginatedResponse<Movie>>> getMovieDetails({
     required int page,
   });
 }
