@@ -8,4 +8,5 @@ final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
 final GoRouter router = GoRouter(
   initialLocation: RouteNames.splash,
   routes: routes,
+  debugLogDiagnostics: true,
 );

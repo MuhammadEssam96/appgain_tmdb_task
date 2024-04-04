@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tmdb_movies/core/navigation/app_route_names.dart';
@@ -42,6 +45,9 @@ final List<GoRoute> routes = <GoRoute>[
   GoRoute(
     path: '/tmdb-movies',
     redirect: (BuildContext context, GoRouterState state) {
+      if (kDebugMode) {
+        log('Redirecting from link://muhammadessam.dev/tmdb-movies to home screen', name: 'Redirection');
+      }
       return '/';
     },
   ),
@@ -50,8 +56,14 @@ final List<GoRoute> routes = <GoRoute>[
     redirect: (BuildContext context, GoRouterState state) {
       if (state.pathParameters['id'] != null) {
         final String movieId = state.pathParameters['id'].toString();
+        if (kDebugMode) {
+          log('Redirecting from link://muhammadessam.dev/tmdb-movies/$movieId to /movies/$movieId ', name: 'Redirection');
+        }
         return '/movies/$movieId';
       } else {
+        if (kDebugMode) {
+          log('Redirecting from link://muhammadessam.dev/tmdb-movies to home screen', name: 'Redirection');
+        }
         return '/';
       }
     },
