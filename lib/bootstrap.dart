@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,6 +12,7 @@ import 'package:tmdb_movies/features/movie_details/domain/entities/credits_entit
 import 'package:tmdb_movies/features/movie_details/domain/entities/genre_entity.dart';
 import 'package:tmdb_movies/features/movie_details/domain/entities/language_entity.dart';
 import 'package:tmdb_movies/features/movie_details/domain/entities/movie_details_entity.dart';
+import 'package:tmdb_movies/firebase_options.dart';
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
@@ -24,6 +26,10 @@ Future<void> bootstrap(
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
 
       await dotenv.load();
 
