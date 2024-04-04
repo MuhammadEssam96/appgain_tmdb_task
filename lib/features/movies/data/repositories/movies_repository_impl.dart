@@ -11,7 +11,7 @@ class MoviesRepositoryImpl extends BaseApiRepository implements MoviesRepository
   const MoviesRepositoryImpl(this._remoteMoviesSource);
 
   @override
-  Future<BaseResponseState<BasePaginatedResponse<Movie>>> getPopularMovies({required int page}) {
+  Future<BaseResponseState<BasePaginatedResponse<Movie>>> getMovieDetails({required int page}) {
     return getStateOf(
       request: () {
         return _remoteMoviesSource.getPopularMovies(page: page);

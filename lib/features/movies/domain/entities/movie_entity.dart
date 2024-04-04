@@ -8,6 +8,7 @@ part 'movie_entity.freezed.dart';
 @Freezed()
 class Movie with _$Movie {
   const factory Movie({
+    required int id,
     required String title,
 
     @JsonKey(name: 'poster_path')

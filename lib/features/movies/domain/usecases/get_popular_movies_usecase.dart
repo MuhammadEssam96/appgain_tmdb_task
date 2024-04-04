@@ -4,11 +4,11 @@ import 'package:tmdb_movies/features/movies/domain/entities/movie_entity.dart';
 import 'package:tmdb_movies/features/movies/domain/repositories/movies_repository.dart';
 
 class GetPopularMoviesUsecase{
-  final MoviesRepository _activitiesRepository;
+  final MoviesRepository _moviesRepository;
 
-  const GetPopularMoviesUsecase(this._activitiesRepository);
+  const GetPopularMoviesUsecase(this._moviesRepository);
 
   Future<BaseResponseState<BasePaginatedResponse<Movie>>> call(int page) async {
-    return _activitiesRepository.getPopularMovies(page: page);
+    return _moviesRepository.getMovieDetails(page: page);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tmdb_movies/core/navigation/app_route_names.dart';
 import 'package:tmdb_movies/features/home/presentation/screens/home_screen.dart';
+import 'package:tmdb_movies/features/movie_details/presentation/screens/movie_details_screen.dart';
 import 'package:tmdb_movies/features/splash/presentation/screens/splash_screen.dart';
 
 final List<GoRoute> routes = <GoRoute>[
@@ -20,6 +21,17 @@ final List<GoRoute> routes = <GoRoute>[
       return MaterialPage<void>(
         key: state.pageKey,
         child: const HomeScreen(),
+      );
+    },
+  ),
+  GoRoute(
+    path: RouteNames.movieDetails,
+    pageBuilder: (BuildContext context, GoRouterState state) {
+      final int id = int.parse(state.pathParameters['id'] ?? '1');
+
+      return MaterialPage<void>(
+        key: state.pageKey,
+        child: MovieDetailsScreen(id: id),
       );
     },
   ),

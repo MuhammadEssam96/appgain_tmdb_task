@@ -6,6 +6,7 @@ abstract class MoviesState extends Equatable {
   @override
   List<Object> get props => <Object>[];
 }
+
 class MoviesInitial extends MoviesState {
   const MoviesInitial();
 }

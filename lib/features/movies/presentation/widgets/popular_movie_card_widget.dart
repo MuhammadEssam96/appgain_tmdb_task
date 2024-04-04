@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:tmdb_movies/core/components/animations/app_animated_shimmer_widget.dart';
 import 'package:tmdb_movies/core/components/animations/app_animated_switcher_widget.dart';
@@ -40,6 +41,12 @@ class _PopularMovieCardState extends State<PopularMovieCard> {
           cardIsTappedDown = false;
         });
       },
+      onTap: () {
+        context.push(
+          '/movies/${widget.movie.id}',
+        );
+      },
+      behavior: HitTestBehavior.opaque,
       child: Container(
         width: 180.w,
         height: 370.h,
