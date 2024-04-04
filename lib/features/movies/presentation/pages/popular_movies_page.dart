@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:tmdb_movies/core/theme/app_colors.dart';
 import 'package:tmdb_movies/features/movies/domain/entities/movie_entity.dart';
 import 'package:tmdb_movies/features/movies/presentation/bloc/movies_bloc.dart';
 import 'package:tmdb_movies/features/movies/presentation/widgets/popular_movie_card_widget.dart';
@@ -92,11 +93,18 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        SizedBox(height: 8.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text(
             'Popular Movies',
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+              letterSpacing: 0.2,
+              fontSize: 16.sp,
+              height: 20.h / 16.sp,
+              color: AppColors.primaryColor,
+            ),
           ),
         ),
         SizedBox(height: 8.h),
