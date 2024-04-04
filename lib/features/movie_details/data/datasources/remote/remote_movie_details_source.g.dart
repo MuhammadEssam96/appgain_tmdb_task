@@ -19,7 +19,7 @@ class _RemoteMovieDetailsSource implements RemoteMovieDetailsSource {
   final String? baseUrl;
 
   @override
-  Future<HttpResponse<MovieDetails>> getPopularMovies({required int id}) async {
+  Future<HttpResponse<MovieDetails>> getMovieDetails({required int id}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -32,7 +32,7 @@ class _RemoteMovieDetailsSource implements RemoteMovieDetailsSource {
     )
             .compose(
               _dio.options,
-              '/movie/:id?append_to_response=credits',
+              '/movie/${id}?append_to_response=credits',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -8,9 +8,9 @@ part 'remote_movie_details_source.g.dart';
 abstract class RemoteMovieDetailsSource {
   const factory RemoteMovieDetailsSource(Dio dio, {String baseUrl}) = _RemoteMovieDetailsSource;
 
-  @GET('/movie/:id?append_to_response=credits')
+  @GET('/movie/{id}?append_to_response=credits')
   Future<HttpResponse<MovieDetails>> getMovieDetails({
-    @Path()
+    @Path('id')
     required int id,
   });
 }
